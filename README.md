@@ -6,7 +6,7 @@ Since in many samples there were zero observations of CNVs in control cohorts, c
 
 We assumed a prior distribution for CNV frequency (p) for both cases and controls of p ~Beta(α, β), which is defined for 0<p<1, as required, with α, β > 0. Then, with n CNVs observed in N cases, and m CNVs observed in M controls (for n, m ≥ 0), the posterior distributions for CNV frequency in cases and controls are Beta(α+n, β+N-n) and Beta(α+m, β+M-m), respectively. We sampled pairs of CNV frequencies from these distributions, and calculate the penetrance, i.e. the probability of developing schizophrenia (disease, D) for individuals carrying the CNV (genotype, G), from
 
-P($\frac{D}{G}$) = $\frac{P(\frac{G}{D})P(D)}{P(\frac{G}{D})P(D) + P(\frac{G}{D'})P(D')}$ 
+P(D/G) = P(G/D)P(D) / (P(G/D)P(D) + P(G/D')P(D'))
 
 where D' represents controls, who do not
 have schizophrenia, and P(D) the lifetime morbid risk for schizophrenia
