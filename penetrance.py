@@ -1,10 +1,9 @@
 """
 TODO:
 1. Still need to change code to include 2.5% and 97.5% quantiles and take median DONE!
-2. Add the confidence intervals
+2. Add the confidence intervals DONE!
 3. Include hidden cases of disease DONE!
-4. Create GUI
-5. Port to R? pls no
+4. Create web app (ongoing)
 """
 from scipy.stats import beta
 import scipy.stats as st
