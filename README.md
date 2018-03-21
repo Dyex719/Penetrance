@@ -1,9 +1,9 @@
-# ABSTRACT
+## ABSTRACT
 
 This project aims to automate the calculation involved in estimating the penetrance of a gene. This project will help researchers obtain the required penetrance by inputting values without having to worry about the internal mechanism behind the estimate.
 The estimation is done using Bayesian probabilistic methods and the simulations to obtain these estimates was performed in Python using the SciPy package, with 2.5, 50 and 97.5% quantiles extracted to obtain the median penetrance, and its corresponding 95% credible intervals.
 
-# INTRODUCTION
+## INTRODUCTION
 
 Penetrance is the probability of developing a particular disease given a particular genotype (genotypic model) or allele (allelic model). It is usually spoken in terms of lifetime risk, meaning the probability that the individual will develop that disease during their lifespan.
  
@@ -12,7 +12,7 @@ A typical study would look at everyone who has been observed with the given geno
  
 In order to improve upon the traditional methods, researchers decided to use population based methods to study penetrance. The first key insight here is that the occurrence of a disease due to a genetic variant is directly proportional to the frequency of that variant in the population. The past few decades have seen a drastic increase in the amount of data collected for these types of studies and have helped to improve the accuracy of these results.
 
-# CALCULATIONS
+## CALCULATIONS
 
 This project focuses on the paper written by Vassos et al. [1]  which describes all the procedure for estimating the penetrance using population based probabilistic techniques and simulations.
 
@@ -44,7 +44,7 @@ Method to calculate the corresponding confidence intervals is described in [2]:
 
 The upper bound of the 95% confidence interval is calculated based on the upper 95%CI of the binomial distribution for case allele frequency and the lower 95%CI for controls. Conversely, the lower bound of penetrance is based on the lower bound of case allele frequency and the upper bound of control allele frequency.
 
-# WEB APPLICATION
+## WEB APPLICATION
 
 The webapp was created using Flask and PythonAnywhere.
  
@@ -55,7 +55,7 @@ PythonAnywhere is an online integrated development environment (IDE) and web hos
 The web app is available at http://penetrance.pythonanywhere.com/
 Currently, the web app is still under construction and developments need to be made to display the penetrance values and confidence intervals correctly. 
 
-# RESULTS
+## RESULTS
 
 The following shows the results using the data from paper[1]:
 ![Results](/images/Results1.jpg)
@@ -64,7 +64,7 @@ The following shows the results using the data from paper[3]:
 ![Results](/images/Results2.jpg)
 
 
-# REFERENCES
+## REFERENCES
 
 
 1.	Penetrance for copy number variants associated with schizophrenia
