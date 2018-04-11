@@ -52,8 +52,8 @@ Flask is a micro web framework written in Python and based on the Werkzeug toolk
  
 PythonAnywhere is an online integrated development environment (IDE) and web hosting service based on the Python programming language.
 
-The web app is available at http://penetrance.pythonanywhere.com/
-Currently, the web app is still under construction and developments need to be made to display the penetrance values and confidence intervals correctly. 
+Web application available at: http://penetrance.pythonanywhere.com/
+
 
 ## RESULTS
 
