@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<title>CalPen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-large">
+  <a href="/" class="w3-bar-item w3-button w3-cyan w3-mobile"><img src="/static/dnaicon.png" alt="Icon" style="width:25px;height:25px;"></i>CalPen</a>
+  <!--<a href="#rooms" class="w3-bar-item w3-button w3-mobile">Rooms</a>-->
+  <a href="#getting-started" class="w3-bar-item w3-button w3-mobile w3-hover-text-cyan">Getting Started</a>
+  <a href="#about" class="w3-bar-item w3-button w3-mobile w3-hover-text-cyan">About</a>
+</div>
+<!-- Header -->
+<header class="w3-display-container w3-content" style="max-width:2000px;">
+  <img class="w3-image" src="/static/dnaabstract.png" alt="Background" style="min-width:1000px" width="2500" height="1500">
+  <div class="w3-display-middle w3-padding w3-col l6 m8">
+    <div class="w3-container w3-cyan">
+      <h2><img src="/static/dnaicon.png" alt="Icon" style="width:50px;height:50px;"> Penetrance Calculator</h2>
+    </div>
+    <div class="w3-container w3-white w3-padding-16">
+      <!--<form action="/action_page.php" target="_blank">-->
+      <form method="POST">
+        <div class="w3-row-padding" style="margin:0 -16px;">
+          <div class="w3-half w3-margin-bottom">
+            <label><i class="fa fa-edit"></i> Enter the number of CNVs observed in cases:</label>
+            <input class="w3-input w3-border" type="number" placeholder="8" name="text" min="0" required>
+          </div>
+          <div class="w3-half">
+            <label><i class="fa fa-edit"></i> Enter the total number of patients in cases:</label>
+            <input class="w3-input w3-border" type="number" placeholder="5089" name="text1" min="0" required>
+          </div>
+        </div>
+
+        <div class="w3-row-padding" style="margin:0 -16px;">
+          <div class="w3-half w3-margin-bottom">
+            <label><i class="fa fa-edit"></i> Enter the number of CNVs observed in controls:</label>
+            <input class="w3-input w3-border" type="number" placeholder="6" name="text2" min="0" required>
+          </div>
+          <div class="w3-half">
+            <label><i class="fa fa-edit"></i> Enter the total number controls:</label>
+            <input class="w3-input w3-border" type="number" placeholder="38884" name="text3" min="0" required>
+          </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px;">
+          <div class="w3-half w3-margin-bottom">
+            <label><i class="fa fa-edit"></i> Enter baseline risk: (Enter Percentage)</label>
+            <input class="w3-input w3-border" type="text" placeholder="0.72" name="text4" min="0" required>
+          </div>
+        </div>
+        <center><button class="w3-button w3-cyan" type="submit"><i class="fa fa-calculator"></i> Calculate Penetrance!</button></center>
+        <!--<input type="submit" class="btn btn-success" value="Calculate Penetrance!">-->
+        {% if comments %}
+        <p><h2> The penetrance is: </h2></p> <h2> {{comments[0]}}</h2>
+        <p><h2> The confidence interval ranges from: </h2></p> <p><h2>{{comments[1]}} to {{comments[2]}} </h2></p>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</header>
+
+<div class="w3-row-padding">
+    <div class="w3-col l4 m7" align="left" id="getting-started">
+      <h3>Getting Started</h3>
+      <h6>
+
+
+The following is an illustration of how the application works:
+
+<p>
+    In order to calculate penetrance for a mutation, five types of data are needed:
+<ol>
+    <li>The number of mutations identified in a patient sample</li>
+
+    <li>The number of patients studied</li>
+
+    <li>The number of mutations identified in the control sample</li>
+
+    <li>The number of controls studied</li>
+
+    <li>The general incidence of the disease under investigation in the population from which patients and controls are sampled.</li>
+
+</ol>
+
+</p>
+
+<p>
+Using these values, a Bayesian probabilistic method is employed to calculate penetrance. This involves simulation using the R statistical package and extraction of 2.5, 50 and 97.5% quantiles to obtain the median penetrance, and its ~95% credible intervals.
+</p>
+
+<p>
+An example of this process is given as default values in the above fields.
+</p>
+
+
+
+
+      </h6>
+    </div>
+        <div class="w3-col l8 m5" align="right;" id="about">
+      <h3>About</h3>
+      <h6>
+
+
+<p>KNM lab is supported by OPERA award from BITS Pilani and by the Centre for Human Diseases.</p>
+<p>AA developed the software which was analysed by KNM and DB.</p>
+
+
+      </h6>
+      </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-padding-32 w3-black w3-center w3-margin-top">
+  <h5>Source Code Available at <a href="https://github.com/Dyex719/Penetrance" class="w3-hover-text-cyan">Github <i class="fa fa-github"></i></a></h5>
+  <p>Powered by <a href="http://flask.pocoo.org/" target="_blank" class="w3-hover-text-cyan">Flask</a> and <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-cyan">w3.css</a></p>
+  <p>Hosted by <a href="https://www.pythonanywhere.com/" target="_blank" class="w3-hover-text-cyan">PythonAnywhere</a></p>
+
+</footer>
+
+
+
+</body>
+</html>
