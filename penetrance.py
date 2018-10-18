@@ -110,6 +110,3 @@ if __name__ == "__main__":
 
     print("The penetrance is %.3f\n" % median_penetrance) # Should print 0.067 for L=1
     print("The confidence interval ranges from: %.3f to %.3f\n" % (lower,upper))
-
-main.py
-Displaying main.py.
