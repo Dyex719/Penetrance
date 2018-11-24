@@ -32,9 +32,8 @@ def check_input_float(prompt, default):
             break
     return value
 
-def Bayesian(prob_cases,prob_controls, hidden = 0):
-    lifetime_risk = 0.0072
-    return (prob_cases*lifetime_risk) / ((prob_cases*lifetime_risk)+(prob_controls*(1-(lifetime_risk))))
+def Bayesian(prob_cases,prob_controls, baseline_risk, hidden = 0):
+    return (prob_cases*baseline_risk) / ((prob_cases*baseline_risk)+(prob_controls*(1-(baseline_risk))))
 
 def probabilities(a,b,quantiles):
     candidates = []
@@ -73,8 +72,8 @@ def penetrance_confint(ac_case, n_case, ac_control, n_control, baseline_risk):
     case_confint =  proportion_confint(count=ac_case,nobs=2*n_case,method='wilson')
     control_confint =  proportion_confint(count=ac_control,nobs=2*n_control,method='wilson')
 
-    lower_bound = Bayesian(case_confint[0],control_confint[1])
-    upper_bound = Bayesian(case_confint[1],control_confint[0])
+    lower_bound = Bayesian(case_confint[0],control_confint[1],baseline_risk)
+    upper_bound = Bayesian(case_confint[1],control_confint[0],baseline_risk)
 
     return (lower_bound,upper_bound)
 
@@ -102,9 +101,9 @@ if __name__ == "__main__":
     B = y + M - m
 
     # Baysian Formula
-    penetrance_5 = Bayesian(probabilities(a,b,0.500),probabilities(A,B,0.500))
-    penetrance_25 = Bayesian(probabilities(a,b,0.025),probabilities(A,B,0.025))
-    penetrance_975 = Bayesian(probabilities(a,b,0.975),probabilities(A,B,0.975))
+    penetrance_5 = Bayesian(probabilities(a,b,0.500),probabilities(A,B,0.500),P)
+    penetrance_25 = Bayesian(probabilities(a,b,0.025),probabilities(A,B,0.025),P)
+    penetrance_975 = Bayesian(probabilities(a,b,0.975),probabilities(A,B,0.975),P)
     median_penetrance = np.median([penetrance_5,penetrance_25,penetrance_975])
     lower,upper = penetrance_confint(n,N,m,M,P)
 
