@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request#, redirect, request, url_for
+from flask import Flask, render_template,request
 from scipy.stats import beta
 import scipy.stats as st
 import numpy as np
@@ -13,9 +13,8 @@ comments = [0,0,0]
 def mean_confidence_interval(data, confidence=0.95):
     return st.t.interval(confidence, len(data)-1, loc=np.mean(data), scale=st.sem(data))
 
-def Bayesian(prob_cases,prob_controls, hidden = 0):
-    lifetime_risk = 0.0072
-    return (prob_cases*lifetime_risk) / ((prob_cases*lifetime_risk)+(prob_controls*(1-(lifetime_risk))))
+def Bayesian(prob_cases,prob_controls, baseline_risk):
+    return (prob_cases*baseline_risk) / ((prob_cases*baseline_risk)+(prob_controls*(1-(baseline_risk))))
 
 def proportion_confint(count, nobs, alpha=0.05, method='normal'):
     '''confidence interval for a binomial proportion
@@ -135,8 +134,8 @@ def penetrance_confint(ac_case, n_case, ac_control, n_control, baseline_risk):
     case_confint =  proportion_confint(count=ac_case,nobs=2*n_case,method='wilson')
     control_confint =  proportion_confint(count=ac_control,nobs=2*n_control,method='wilson')
 
-    lower_bound = Bayesian(case_confint[0],control_confint[1])
-    upper_bound = Bayesian(case_confint[1],control_confint[0])
+    lower_bound = Bayesian(case_confint[0],control_confint[1],baseline_risk)
+    upper_bound = Bayesian(case_confint[1],control_confint[0],baseline_risk)
 
     return (lower_bound,upper_bound)
 
@@ -162,6 +161,7 @@ def my_form_post():
     m = int(text2)
     M = int(text3)
     P = float(text4)
+    P = P/100
     L = 1
 
     n = n + M*(1-L)*P*n/N
@@ -177,9 +177,9 @@ def my_form_post():
     A = x + m
     B = y + M - m
 
-    penetrance_5 = Bayesian(probabilities(a,b,0.500),probabilities(A,B,0.500))
-    penetrance_25 = Bayesian(probabilities(a,b,0.025),probabilities(A,B,0.025))
-    penetrance_975 = Bayesian(probabilities(a,b,0.975),probabilities(A,B,0.975))
+    penetrance_5 = Bayesian(probabilities(a,b,0.500),probabilities(A,B,0.500),P)
+    penetrance_25 = Bayesian(probabilities(a,b,0.025),probabilities(A,B,0.025),P)
+    penetrance_975 = Bayesian(probabilities(a,b,0.975),probabilities(A,B,0.975),P)
     median_penetrance = np.median([penetrance_5,penetrance_25,penetrance_975])
     output = round(median_penetrance,3)
     comments[0] = output
@@ -190,4 +190,3 @@ def my_form_post():
 
 
     return render_template("main_page.html", comments= comments)
-
