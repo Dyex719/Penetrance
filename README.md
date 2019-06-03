@@ -38,11 +38,11 @@ the controls of the original studies did not include cases with schizophrenia.
 
  Using these formulae the penetrance was estimated for various values of L including the extreme values of L=1 (no schizophrenia cases hidden in controls, as assumed previously) and L=0 (general population controls, unscreened for schizophrenia).
 
-For the estimation of penetrance of schizophrenia, the conservative median global value for lifetime morbid risk (P(D) in the formula mentioned above) of 0.72% was adopted from a comprehensive meta-analysis. Simulation was performed in Python using the SciPy package, with 2.5, 50 and 97.5% quantiles extracted to obtain the median penetrance, and its 95% confidence intervals.
+For the estimation of penetrance of schizophrenia, the conservative median global value for lifetime morbid risk (P(D) in the formula mentioned above) of 0.72% was adopted from a comprehensive meta-analysis. Simulation was performed in Python using the SciPy package, with 2.5, 50 and 97.5% quantiles extracted to obtain the median penetrance, and its 95% credible intervals.
 
-Method to calculate the corresponding confidence intervals is described in [2]:
+Method to calculate the corresponding credible intervals is described in [2]:
 
-The upper bound of the 95% confidence interval is calculated based on the upper 95%CI of the binomial distribution for case allele frequency and the lower 95%CI for controls. Conversely, the lower bound of penetrance is based on the lower bound of case allele frequency and the upper bound of control allele frequency.
+The upper bound of the 95% credible interval is calculated based on the upper 95%CI of the binomial distribution for case allele frequency and the lower 95%CI for controls. Conversely, the lower bound of penetrance is based on the lower bound of case allele frequency and the upper bound of control allele frequency.
 
 ## WEB APPLICATION
 
